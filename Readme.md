@@ -1,5 +1,5 @@
 <h2 align="center">Flask </h2>
-
+```
 flask_app/
 │── app/
 │   │── __init__.py        # Initialize Flask app + DB connection
@@ -13,3 +13,4 @@ flask_app/
 │── .env                   # Environment variables
 │── run.py                 # Entry point
 │── requirements.txt       # Dependencies
+```
