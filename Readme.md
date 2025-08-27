@@ -16,3 +16,10 @@ flask_app/
 │── run.py                 # Entry point
 │── requirements.txt       # Dependencies
 ```
+
+## Database
+```
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+```
