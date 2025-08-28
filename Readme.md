@@ -1,5 +1,5 @@
 <h2 align="center">Flask </h2>
-<p align="center"> </p>
+<p align="center"> This Flask project is structured based on my requirements to keep the setup simple and avoid unnecessary complexity or wasted time. </p>
 
 
 ```
