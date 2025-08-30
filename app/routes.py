@@ -4,6 +4,8 @@ from .extensions import db
 
 main = Blueprint("main", __name__)
 
+#########################################################
+##################Basic Crud Operation###################
 @main.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
