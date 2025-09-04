@@ -48,4 +48,38 @@ def login():
         else:
             flash("Invalid email or password.", "danger")
             return redirect("/")
+        
+#######################################################
+@main.route("/logout")
+def logout():
+    session.pop("user_id", None)
+    flash("You have been logged out.", "info")
+    return redirect("/")
+
+#########################################################
+@main.route("/registration", methods=["GET", "POST"])
+def registration():
+    return render_template("registration.html")
+
+#########################################################
+@main.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Check if user already exists
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash("Email already registered.", "warning")
+            return redirect("/register")
+
+        # Create new user
+        new_user = User(name=name, email=email)
+        #new_user.set_password(password)
+        db.session.add(new_user)
+        db.session.commit() 
+        flash("Registration successful! Please log in.", "success")
+        return redirect("/")
 
