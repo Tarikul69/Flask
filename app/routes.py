@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, flash, jsonify, redirect, render_template, request, session
+from werkzeug.security import check_password_hash
 from .models import User
 from .extensions import db
 
@@ -28,3 +29,23 @@ def add_user():
 def users():
     data = User.query.all()
     return jsonify({"data": data})
+
+#########################################################
+@main.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Find user by email
+        user = User.query.filter_by(email=email).first()
+
+        if user and check_password_hash(user.password, password):
+            # Store user in session
+            session["user_id"] = user.id
+            flash("Login successful!", "success")
+            return redirect("about")
+        else:
+            flash("Invalid email or password.", "danger")
+            return redirect("/")
+

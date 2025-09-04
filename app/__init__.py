@@ -28,6 +28,6 @@ def create_app():
     # Register blueprints
     app.register_blueprint(main)
 
-    from .models import User, Customer
+    from .models import User
 
     return app
